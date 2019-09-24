@@ -65,10 +65,9 @@
 		for (var x = 0; x < c; x++)
 		{
 			newlast = newlast + lastelement.charAt(x);
-			console.log(`Loop newLast: ${newlast}`);
+
 		}
-		console.log(`New last: ${newlast}`);
-		console.log(`c: ${c} r: ${r}` );
+
 		formattedcode[formattedcode.length - 1] = newlast;
 		return formattedcode.join('\n') ;
 	}
