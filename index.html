@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>browser-amd-editor</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+</head>
+<body>
+
+<div id="container" style="width:100vw;height:100vh;border:0px solid grey"></div>
+
+<!-- OR ANY OTHER AMD LOADER HERE INSTEAD OF loader.js -->
+<script src="node_modules/monaco-editor/min/vs/loader.js"></script>
+<script>
+	var row = 2;
+	var col = 0;
+	require.config({ paths: { 'vs': 'node_modules/monaco-editor/min/vs' }});
+
+	require(['vs/editor/editor.main'], function() {
+		var editor = monaco.editor.create(document.getElementById('container'), {
+			value: getCode(row,col),
+			language: 'csharp'
+		});
+		document.addEventListener("keydown", keyDownTextField, false);
+
+	function keyDownTextField(e) {
+
+		editor.setValue(getCode(row, col))
+	}
+
+	function getCode(r, c) {
+
+		var code = [
+			'using System;',
+			'using System.Text;',
+			'using Amazon.Lambda.Core;',
+			'  ',
+			'namespace ManchesterLambda',
+			'{',
+			'\tpublic class Function',
+			'\t{',
+			'\t\tpublic string FunctionHandler(string input, ILambdaContext context)',
+			'\t\t{',
+			'\t\t\treturn input?.ToUpper();',
+			'\t\t}',
+			'\t}',
+			'} ',
+			]
+
+		var formattedcode = code.slice(1,r)
+		var lastelement = formattedcode[formattedcode.length - 1];
+		if (lastelement == null){
+			console.log('Last Element not found');
+			return formattedcode.join('\n') ;
+
+		}
+		var newlast = '';
+		if ((lastelement.length - 1) == c){
+			col = 0;
+			row = r +1;
+		}
+		else {
+			col = c +1;
+		}
+
+		for (var x = 0; x < c; x++)
+		{
+			newlast = newlast + lastelement.charAt(x);
+			console.log(`Loop newLast: ${newlast}`);
+		}
+		console.log(`New last: ${newlast}`);
+		console.log(`c: ${c} r: ${r}` );
+		formattedcode[formattedcode.length - 1] = newlast;
+		return formattedcode.join('\n') ;
+	}
+	});
+
+
+</script>
+</body>
+</html>
