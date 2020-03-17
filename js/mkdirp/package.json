@@ -39,7 +39,7 @@
     "url": "https://github.com/substack/node-mkdirp/issues"
   },
   "dependencies": {
-    "minimist": "0.0.8"
+    "minimist": "1.2.5"
   },
   "description": "Recursively mkdir, like `mkdir -p`",
   "devDependencies": {
