@@ -36,7 +36,7 @@
     "url": "https://github.com/substack/node-optimist/issues"
   },
   "dependencies": {
-    "minimist": "~0.0.1",
+    "minimist": "~1.2.5",
     "wordwrap": "~0.0.2"
   },
   "description": "Light-weight option parsing with an argv hash. No optstrings attached.",
